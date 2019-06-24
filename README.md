@@ -3,7 +3,7 @@
     Just for Integer, +,-,*,/,%
     and support print function, if-else, while statements.
 
-# Goal
+# Goal?
     x = 1 y = 2
     Main = { Event = { id = 1 } }
     Event = {
