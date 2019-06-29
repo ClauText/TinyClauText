@@ -36,6 +36,10 @@ namespace wiz {
 
 		StringBuilder& operator=(const StringBuilder& other)
 		{
+			if (this == &other) {
+				return *this;
+			}
+
 			if (buffer_first != nullptr) {
 				free(buffer_first);
 			}
@@ -52,6 +56,10 @@ namespace wiz {
 		}
 		StringBuilder& operator=(StringBuilder&& other)
 		{
+			if (this == &other) {
+				return *this;
+			}
+
 			buffer_first = other.buffer_first;
 			buffer = other.buffer;
 			len = other.len;

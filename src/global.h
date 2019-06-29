@@ -8,6 +8,7 @@
 
 #include <list>
 #include <deque>
+#include <stack>
 #include <vector>
 #include <map>
 #include <set>
@@ -23,8 +24,7 @@ namespace wiz {
 	using VECTOR = std::vector<T>;
 	template<class T, class S>
 	using MAP = std::map<T, S>;
-	template<class T, class S>
-	using SMALL_MAP = std::map<T, S>; // array_map with std::vector
+
 
 	bool IsInteger(const std::string& str);
 
@@ -100,9 +100,29 @@ namespace wiz {
 		{
 			return !(*this == other);
 		}
+
+		void operator+=(const std::string& other) {
+			if (this->type == Type::STR) {
+				this->str += other;
+			}
+		}
 	};
 
 	using WIZ_STRING_TYPE = DataType;
+
+	inline bool operator==(const char* cstr, const DataType& data) {
+		return data.ToString() == cstr;
+	}
+	inline bool operator==(const DataType& data, const char* cstr) {
+		return data.ToString() == cstr;
+	}
+	inline bool operator!=(const char* cstr, const DataType& data) {
+		return data.ToString() != cstr;
+	}
+	inline bool operator!=(const DataType& data, const char* cstr) {
+		return data.ToString() != cstr;
+	}
+
 
 	inline std::string ToString(const WIZ_STRING_TYPE& other) {
 		return other.ToString();
@@ -192,6 +212,33 @@ namespace wiz {
 		}
 		return false;
 	}
+
+	template <class Key, class Data>
+	class Pair
+	{
+	public:
+		Key first;
+		Data second;
+	public:
+		explicit Pair() { }
+		explicit Pair(const Key& key, const Data& data)
+			: first(key), second(data) {
+
+		}
+	public:
+		bool operator<(const Pair& other) const
+		{
+			return first < other.first;
+		}
+		bool operator==(const Pair& other) const
+		{
+			return first == other.first;
+		}
+		bool operator!=(const Pair& other) const
+		{
+			return first != other.first;
+		}
+	};
 
 }
 
